@@ -11,6 +11,16 @@ be a way for multiple users to easily update the underlying database. To help us
 goes bad there should also be a mechanism to notify users when certain items are going to
 expire soon so they can incorporate them into their meal plans.
 
+Containerization Solution: 
+
+In our project, the user will input data including : product name, quantity, quantity unit,
+expiration date, and optionally the barcode number. This data will be sent to the API in the form of a
+JSON object. This project should only need two containers. One to run the RESTful API and
+handle user input and output. The requests from the front end (user level) will be handled using
+a kubernetes service. Once the requests are routed, our API will parse through the data and
+requests. We are also hoping to create a sorting platform where users can filter expired or soon
+to be expired food using where requests are sent to the RESTful API to handle.
+
 # Usage
 From the directory in which the top level foodStorage directory is in run the following.
 ## Compile Command:
