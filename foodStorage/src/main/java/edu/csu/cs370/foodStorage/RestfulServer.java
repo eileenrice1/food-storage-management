@@ -23,7 +23,14 @@ public class RestfulServer
 
     private void processRestfulApiRequests()
     {
+	Spark.get("/D2", this::d2);
 	Spark.get("/", this::echoRequest);
+    }
+
+    private String d2(Request request, Response response)
+    {
+	System.out.println(request.body());
+	return HTTPRequestToJson();
     }
 
     private String echoRequest(Request request, Response response)
