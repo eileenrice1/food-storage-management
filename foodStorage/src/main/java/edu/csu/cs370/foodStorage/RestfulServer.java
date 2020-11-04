@@ -12,6 +12,7 @@ public class RestfulServer
     public RestfulServer()
     {
 	this.configureResfulApiServer();
+	this.processRestfulApiRequests();
     }
 
     private void configureResfulApiServer()
@@ -31,7 +32,7 @@ public class RestfulServer
 	response.header("Access-Control-Allow-Origin", "*");
 	response.status(200);
 
-	return this.HttpRequestToJson(request);
+	return HttpRequestToJson(request);
     }
 
     private String HttpRequestToJson(Request request)
