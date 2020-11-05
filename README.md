@@ -28,7 +28,7 @@ From the directory in which the top level foodStorage directory is in run the fo
 ## Run Command:
 `java -cp target/foodStorage-1.0-SNAPSHOT-jar-with-dependencies.jar edu.csu.cs370.foodStorage.RestfulServer`
 ## Path to use
-Make a get request with path "/d2"
+Make a get request with path "/D2"
 # Docker
 If haven't already, run: `docker pull maven`  
 Then the following:  
