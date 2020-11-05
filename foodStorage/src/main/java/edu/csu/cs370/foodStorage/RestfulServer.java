@@ -70,7 +70,7 @@ public class RestfulServer
 	    + "\"uri\":\""           + request.uri()           + "\",\n"
 	    + "\"url\":\""           + request.url()           + "\",\n"
 	    + "\"userAgent\":\""     + request.userAgent()     + "\",\n"
-	    + "}";
+	    + "}\n";
     }
     
     public static void main( String[] args )
