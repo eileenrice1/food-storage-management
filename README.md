@@ -33,6 +33,6 @@ Make a get request with path "/D2"
 If haven't already, run: `docker pull maven`  
 Then the following:  
 `docker build --tag foodstorage .`  
-`docker run --publish 8080:8080 --detach -name fs foodstorage`  
+`docker run --publish 8080:8080 --detach --name fs foodstorage`  
   
 Stop docker container with `docker rm --force fs`
