@@ -34,7 +34,7 @@ public class RestfulServer
 	response.type("application/json");
 	response.header("Access-Control-Allow-Origin", "*");
 	response.status(200);
-	return HTTPRequestToJson(request);
+	return HttpRequestToJson(request);
     }
 
     private String echoRequest(Request request, Response response)
