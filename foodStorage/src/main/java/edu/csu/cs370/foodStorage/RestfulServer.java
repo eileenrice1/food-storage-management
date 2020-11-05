@@ -23,7 +23,7 @@ public class RestfulServer
 
     private void processRestfulApiRequests()
     {
-	Spark.get("/D2", this::d2);
+	Spark.post("/D2", this::d2);
 	Spark.get("/", this::echoRequest);
     }
 
