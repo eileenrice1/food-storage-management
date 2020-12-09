@@ -29,4 +29,4 @@ spec:
     protocol: TCP
     targetPort: 8080
     port: 80
-    NodePort: 5530
+    nodePort: 5530
