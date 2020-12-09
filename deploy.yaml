@@ -1,0 +1,14 @@
+...
+apiVersion: v1
+kind: Pod
+metadata:
+  name: food-storage
+  labels:
+    app: food-storage
+spec:
+  containers:
+  - name: restful
+    image: fs
+    imagePullPolicy: never
+    ports:
+    - containerPort: 8080
