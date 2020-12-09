@@ -7,7 +7,7 @@ public class Item
     private String type;
     private String unit;
     private float quantity;
-    private Date expirationDate;
+    private Date expirationDate = null;
     private int barcode;
 
     public Item(String type, String unit)
@@ -50,9 +50,10 @@ public class Item
         if (o instanceof Item)
         {
             Item i = (Item)o;
-            return this.type == i.type
-                && this.unit == i.unit
-                && this.barcode == i.barcode;
+            return this.type.equals(i.type)
+                && this.unit.equals(i.unit)
+                && this.barcode == i.barcode
+                && (this.expirationDate == null || i.expirationDate == null) ? true : this.expirationDate.equals(i.expirationDate);
         }
         else return false;
     }

@@ -30,48 +30,41 @@ public class RestfulServer
 
     private void processRestfulApiRequests()
     {
-		Spark.post("/D2", this::d2);
+		Spark.post("/D2", this::printBodyAndEcho);
 		Spark.post("/additem", this::addItem);
+		Spark.post("/takeitem", this::takeItem);
 		Spark.get("/showall", this::showAll);
 		Spark.get("/", this::echoRequest);
 	}
 	
 	private String addItem(Request request, Response response) {
-		System.out.println(request.body());
-
 		this.database.addItem(this.gson.fromJson(request.body(), Item.class));
+		return printBodyAndEcho(request, response);
+	}
 
-		System.out.println(this.database.getItems());
-
-		response.type("application/json");
-		response.header("Access-Control-Allow-Origin", "*");
-		response.status(200);
-
-		return echoRequest(request, response);
+	private String takeItem(Request request, Response response)
+	{
+		JsonObject takeRequest = new JsonParser().parse(request.body()).getAsJsonObject();
+		this.database.removeFromItem(takeRequest.get("type").getAsString(), takeRequest.get("unit").getAsString(), takeRequest.get("quantity").getAsFloat());
+		return printBodyAndEcho(request, response);
 	}
 
 	private String showAll(Request request, Response response)
 	{
 		System.out.println(response.body());
-
 		this.respondWithJson(response);
-
 		return this.gson.toJson(this.database.getItems()) + '\n';
 	}
 
-    private String d2(Request request, Response response)
+    private String printBodyAndEcho(Request request, Response response)
     {
 		System.out.println(request.body());
-
 		return echoRequest(request, response);
     }
 
     private String echoRequest(Request request, Response response)
     {
-		response.type("application/json");
-		response.header("Access-Control-Allow-Origin", "*");
-		response.status(200);
-
+		this.respondWithJson(response);
 		return HttpRequestToJson(request);
 	}
 	

@@ -13,13 +13,17 @@ public class FoodStorage
 
     public void addItem(Item item)
     {
-        this.database.add(item);
+        if (this.database.contains(item))
+        {
+            this.database.get(this.database.indexOf(item)).addQuantity(item.getQuantity());
+        }
+        else this.database.add(item);
     }
 
-    public void addToItem(String type, String unit, float quantity)
-    {
-        this.database.get(this.database.indexOf(new Item(type, unit))).addQuantity(quantity);
-    }
+    // public void addToItem(String type, String unit, float quantity)
+    // {
+    //     this.database.get(this.database.indexOf(new Item(type, unit))).addQuantity(quantity);
+    // }
     
     public void removeFromItem(String type, String unit, float quantity)
     {
