@@ -27,7 +27,7 @@ From the directory in which the top level foodStorage directory is in run the fo
 `mvn package`
 ## Run Command:
 `java -cp target/foodStorage-1.0-SNAPSHOT-jar-with-dependencies.jar edu.csu.cs370.foodStorage.RestfulServer`
-## Path to use
+## Path to use for TP-D2
 Make a get request with path "/D2"
 # Docker
 If haven't already, run: `docker pull maven`  
@@ -36,3 +36,6 @@ Then the following:
 `docker run --publish 8080:8080 --detach --name fs foodstorage`  
   
 Stop docker container with `docker rm --force fs`
+# Kubernetes
+To start the needed kubernetes services run the bash script startCluster.  
+It has all the commands needed to get things running smoothly.
