@@ -44,9 +44,7 @@ public class RestfulServer
 
 	private String takeItem(Request request, Response response)
 	{
-		JsonObject takeRequest = new JsonParser().parse(request.body()).getAsJsonObject();
-		this.database.removeFromItem(takeRequest.get("type").getAsString(), takeRequest.get("unit").getAsString(), takeRequest.get("quantity").getAsFloat());
-		return printBodyAndEcho(request, response);
+		return "" + this.database.removeFromItem(this.gson.fromJson(request.body(), Item.class)) + '\n';
 	}
 
 	private String showAll(Request request, Response response)

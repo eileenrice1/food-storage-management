@@ -23,9 +23,9 @@ public class Item
         this.expirationDate = expirationDate;
     }
     
-    public Item(String type, String unit, float quantity, Date exporationDate, int barcode)
+    public Item(String type, String unit, float quantity, Date expirationDate, int barcode)
     {
-        this(type, unit, quantity, exporationDate);
+        this(type, unit, quantity, expirationDate);
         this.barcode = barcode;
     }
 
@@ -37,12 +37,15 @@ public class Item
 
     public void addQuantity(float quantity) {this.quantity += quantity;}
 
-    public boolean removeQuantity(float quantity) {
-        if (quantity <= this.quantity) {
-            this.quantity -= quantity;
-            return true;
+    public float removeQuantity(float quantity) {
+        this.quantity -= quantity;
+        if (this.quantity < 0.0f)
+        {
+            float removed = quantity + this.quantity;
+            this.quantity = 0;
+            return removed;
         }
-        else return false;
+        else return quantity;
     }
 
     public boolean equals(Object o)
@@ -53,7 +56,7 @@ public class Item
             return this.type.equals(i.type)
                 && this.unit.equals(i.unit)
                 && this.barcode == i.barcode
-                && (this.expirationDate == null || i.expirationDate == null) ? true : this.expirationDate.equals(i.expirationDate);
+                && ((this.expirationDate == null || i.expirationDate == null) ? true : this.expirationDate.equals(i.expirationDate));
         }
         else return false;
     }

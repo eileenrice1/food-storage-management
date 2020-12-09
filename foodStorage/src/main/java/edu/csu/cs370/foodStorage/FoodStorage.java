@@ -25,13 +25,19 @@ public class FoodStorage
     //     this.database.get(this.database.indexOf(new Item(type, unit))).addQuantity(quantity);
     // }
     
-    public void removeFromItem(String type, String unit, float quantity)
+    public float removeFromItem(Item item)
     {
-        Item i = this.database.get(this.database.indexOf(new Item(type, unit)));
-        i.removeQuantity(quantity);
-        if (i.getQuantity() <= 0) {
-            this.database.remove(i);
+        int index = this.database.indexOf(item);
+        if (index >= 0)
+        {
+            Item i = this.database.get(index);
+            float removed = i.removeQuantity(item.getQuantity());
+            if (i.getQuantity() <= 0) {
+                this.database.remove(i);
+            }
+            return removed;
         }
+        else return 0.0f;
     }
 
     public ArrayList<Item> getItems() {return this.database;}
