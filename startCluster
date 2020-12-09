@@ -1,0 +1,5 @@
+#!/user/bin/bash
+
+eval $(minikube -p minikube docker-env)
+docker build --tag foodstorage .
+kubectl apply -f deploy.yaml
