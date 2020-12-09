@@ -9,6 +9,6 @@ spec:
   containers:
   - name: restful
     image: foodstorage
-    imagePullPolicy: never
+    imagePullPolicy: Never
     ports:
     - containerPort: 8080
