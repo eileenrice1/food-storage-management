@@ -8,7 +8,7 @@ metadata:
 spec:
   containers:
   - name: restful
-    image: fs
+    image: foodstorage
     imagePullPolicy: never
     ports:
     - containerPort: 8080
