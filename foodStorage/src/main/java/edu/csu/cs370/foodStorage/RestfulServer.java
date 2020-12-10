@@ -4,6 +4,10 @@ import spark.Request;
 import spark.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.Date;
+import java.util.ArrayList;
+
 import com.google.gson.*;
 
 public class RestfulServer 
@@ -16,7 +20,7 @@ public class RestfulServer
     public RestfulServer(int port)
     {
 		this.port = port;
-		this.database = new FoodStorage();
+		this.database = new FoodStorage("foodStorage.txt");
 		this.gson = new GsonBuilder().setDateFormat("dd MMM yyyy").create();
 		this.configureResfulApiServer();
 		this.processRestfulApiRequests();
@@ -33,11 +37,13 @@ public class RestfulServer
 		Spark.post("/D2", this::printBodyAndEcho);
 		Spark.post("/additem", this::addItem);
 		Spark.post("/takeitem", this::takeItem);
-		Spark.get("/showall", this::showAll);
+		Spark.get("/show/all", this::showAll);
+		Spark.get("/show/before", this::getExpiresBefore);
 		Spark.get("/", this::echoRequest);
 	}
 	
-	private String addItem(Request request, Response response) {
+	private String addItem(Request request, Response response)
+	{
 		this.database.addItem(this.gson.fromJson(request.body(), Item.class));
 		return printBodyAndEcho(request, response);
 	}
@@ -52,6 +58,20 @@ public class RestfulServer
 		System.out.println(response.body());
 		this.respondWithJson(response);
 		return this.gson.toJson(this.database.getItems()) + '\n';
+	}
+
+	private String getExpiresBefore(Request request, Response response)
+	{
+		System.out.println("Getting items expiring before " + request.body());
+		this.respondWithJson(response);
+
+		Date d = this.gson.fromJson(request.body(), Date.class);
+		ArrayList<Item> items = new ArrayList();
+		for (Item i : this.database.getItems())
+		{
+			if (i.getExpirationDate().compareTo(d) <= 0) items.add(i);
+		}
+		return this.gson.toJson(items) + '\n';
 	}
 
     private String printBodyAndEcho(Request request, Response response)

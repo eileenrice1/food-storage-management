@@ -2,7 +2,7 @@ package edu.csu.cs370.foodStorage;
 import java.util.Date;
 import com.google.gson.*;
 
-public class Item
+public class Item implements Comparable<Item>
 {
     private String type;
     private String unit;
@@ -66,5 +66,9 @@ public class Item
         Gson gson = new GsonBuilder().setDateFormat("dd MMM yyyy").create();
 
         return gson.toJson(this);
+    }
+
+    public int compareTo(Item i) {
+        return this.expirationDate.compareTo(i.expirationDate);
     }
 }
