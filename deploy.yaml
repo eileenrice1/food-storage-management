@@ -48,7 +48,6 @@ spec:
     volumeMounts:
     - mountPath: "/root"
       name: pv-storage
-    workingDir: "/root"
 
 ---
 apiVersion: v1
