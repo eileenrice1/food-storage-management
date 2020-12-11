@@ -45,6 +45,9 @@ spec:
     imagePullPolicy: Never
     ports:
     - containerPort: 8080
+    volumeMounts:
+    - mountPath: "/"
+      name: pv-storage
 
 ---
 apiVersion: v1
