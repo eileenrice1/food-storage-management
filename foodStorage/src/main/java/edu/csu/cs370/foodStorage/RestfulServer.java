@@ -20,7 +20,7 @@ public class RestfulServer
     public RestfulServer(int port)
     {
 		this.port = port;
-		this.database = new FoodStorage("foodStorage.txt");
+		this.database = new FoodStorage("foodStorage.json");
 		this.gson = new GsonBuilder().setDateFormat("dd MMM yyyy").create();
 		this.configureResfulApiServer();
 		this.processRestfulApiRequests();
