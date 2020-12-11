@@ -46,7 +46,7 @@ spec:
     ports:
     - containerPort: 8080
     volumeMounts:
-    - mountPath: "/root"
+    - mountPath: "/data"
       name: pv-storage
 
 ---

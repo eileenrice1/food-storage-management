@@ -17,7 +17,7 @@ public class FoodStorage
 
     public FoodStorage(String saveFile)
     {
-        this.saveFile = saveFile;
+        this.saveFile = "data/" + saveFile;
         this.gson = new GsonBuilder().setDateFormat("dd MMM yyyy").create();
         File file = new File(saveFile);
         if (file.exists())
@@ -74,7 +74,7 @@ public class FoodStorage
 
     private void save()
     {
-        System.out.println("Saving in cwd: " + System.getProperty("user.dir"));
+        System.out.println("Saving to file: " + System.getProperty("user.dir") + this.saveFile);
         try
         {
             PrintWriter file = new PrintWriter(this.saveFile);
