@@ -74,6 +74,7 @@ public class FoodStorage
 
     private void save()
     {
+        System.out.println("Saving in cwd: " + System.getProperty("user.dir"));
         try
         {
             PrintWriter file = new PrintWriter(this.saveFile);
