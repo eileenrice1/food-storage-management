@@ -69,7 +69,6 @@ public class Client
 	
 	private String addItem(Request request, Response response)
 	{
-        post(request, response);
         this.database.addItem(this.gson.fromJson(request.body(), Item.class));
 		return printBodyAndEcho(request, response);
 	}
