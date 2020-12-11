@@ -6,7 +6,7 @@ metadata:
   labels:
     type: local
 spec:
-  storageClassName: hostPath
+  storageClassName: manual
   capacity:
     storage: 4Gi
   accessModes:
@@ -20,7 +20,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: volume-claim
 spec:
-  storageClassName: hostPath
+  storageClassName: manual
   accessModes:
     - ReadWriteOnce
   resources:
